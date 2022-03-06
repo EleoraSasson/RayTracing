@@ -39,9 +39,8 @@ public class Vector extends Point{
 		return new Vector(this.xyz.add(u.xyz));
 	}
 	
-	public Vector subtract(Vector u) {
-		u.xyz.scale(-1);
-		return this.add(u);
+	public Vector scale(double a) {
+		return new Vector(this.xyz.scale(a));
 	}
 	
 	public double dotProduct(Vector u)
