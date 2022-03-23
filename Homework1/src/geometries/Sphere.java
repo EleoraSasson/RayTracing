@@ -1,4 +1,6 @@
 package geometries;
+import java.util.List;
+import static primitives.Util.alignZero;
 import primitives.*;
 
 public class Sphere implements Geometry{
@@ -19,6 +21,48 @@ public class Sphere implements Geometry{
 	        N.normalize();
 	        return N;
 	    }
+	 
+	 @Override
+	 public List<Point> findIntersections(Ray ray){
+		 Point p0=ray.getP0();
+	        Vector v=ray.getDir();
+
+	        if(p0.equals(center)){
+	            throw new IllegalArgumentException("Ray p0 cannot be equals to the center of the sphere");
+	        }
+
+	        Vector u=center.subtract(p0);
+
+	        double tm=u.dotProduct(v);
+	        double d=alignZero(Math.sqrt(u.lengthSquared()-tm*tm));
+
+	        if(d>=radius){
+	           return null;
+	        }
+
+	        double th=Math.sqrt(radius*radius-d*d);
+	        double t1=tm-th;
+	        double t2=tm+th;
+
+	        if(t1>0 && t2>0){
+	            Point p1=ray.getPoint(t1);
+	            Point p2= ray.getPoint(t2);
+
+	            return List.of(p1,p2);
+	        }
+	        if(t1>0){
+	            Point p1= ray.getPoint(t1);
+
+	            return List.of(p1);
+	        }
+
+	        if(t2>0){
+	            Point p2= ray.getPoint(t2);
+
+	            return List.of(p2);
+	        }
+	        return null;	 }
+
 	
 
 }

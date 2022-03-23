@@ -2,7 +2,7 @@ package primitives;
 
 public class Point {
 	
-	protected Double3 xyz;
+	public Double3 xyz;
 		
 	public Point(double x, double y, double z) {
 		xyz = new Double3(x,y,z);
@@ -39,6 +39,20 @@ public class Point {
 	{
 		return Math.sqrt(distanceSquared(b));
 	}
+	
+	public double getX() {
+		return xyz.getX();
+	}
+
+	public double getY() {
+		return xyz.getY();
+	}
+
+	public double getZ() {
+		return xyz.getZ();
+	}
+	
+	
 
 	@Override
 	public int hashCode() {

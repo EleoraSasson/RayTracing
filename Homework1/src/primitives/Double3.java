@@ -44,6 +44,18 @@ public class Double3 {
 		Double3 other = (Double3) obj;
 		return isZero(d1 - other.d1) && isZero(d2 - other.d2) && isZero(d3 - other.d3);
 	}
+	
+	public double getX() {
+		return d1;
+	}
+
+	public double getY() {
+		return d2;
+	}
+
+	public double getZ() {
+		return d3;
+	}
 
 	@Override
 	public int hashCode() {

@@ -25,8 +25,13 @@ public class Ray {
 		public Vector getDir() {
 		return dir;
 	}
+	
+	public Point getPoint(double t) {
+		Point p= p0.add(dir.scale(t));
+        return p;
+	}
 
-		@Override
+	@Override
 	public String toString() {
 		return "Ray [p0=" + p0 + ", dir=" + dir + "]";
 	}
