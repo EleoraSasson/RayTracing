@@ -33,14 +33,16 @@ public class Plane implements Geometry{
 		return "Plane [q0=" + q0 + ", normal=" + normal + "]";
 	}
 	
+
+	 public Vector getNormal() {
+		 return normal;
+	 }
+	 
 	 @Override
 	 public Vector getNormal(Point p) {
 	        return normal;
 	 }
 	 
-	 public Vector getNormal() {
-		 return normal;
-	 }
 	 
 	 @Override
 	 public List<Point> findIntersections(Ray ray){

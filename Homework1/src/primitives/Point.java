@@ -51,8 +51,6 @@ public class Point {
 	public double getZ() {
 		return xyz.getZ();
 	}
-	
-	
 
 	@Override
 	public int hashCode() {
