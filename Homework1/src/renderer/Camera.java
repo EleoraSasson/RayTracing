@@ -39,6 +39,7 @@ public class Camera {
 	        return this;
 	    }
 	    
+	    //constructor
 	public Camera(Point P0, Vector VTo, Vector VUp) {
 		  p0 = P0;
 	      vTo = VTo.normalize();
