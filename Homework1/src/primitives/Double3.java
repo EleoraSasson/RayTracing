@@ -27,12 +27,15 @@ public class Double3 {
 	 * @param d2 second number value
 	 * @param d3 third number value
 	 */
-	protected Double3(double d1, double d2, double d3) {
+	public Double3(double d1, double d2, double d3) {
 		this.d1 = d1;
 		this.d2 = d2;
 		this.d3 = d3;
 	}
 
+	/*
+	 * Boolean function to check whether 2 objects are equal 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -45,14 +48,23 @@ public class Double3 {
 		return isZero(d1 - other.d1) && isZero(d2 - other.d2) && isZero(d3 - other.d3);
 	}
 	
+	/*
+	 * getter for the first parameter d1 of Double3
+	 */
 	public double getX() {
 		return d1;
 	}
 
+	/*
+	 * getter for the second parameter d2 of Double3
+	 */
 	public double getY() {
 		return d2;
 	}
 
+	/*
+	 * getter for the third parameter d3 of Double3
+	 */
 	public double getZ() {
 		return d3;
 	}
