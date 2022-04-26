@@ -103,7 +103,7 @@ public class Camera {
 	
 	 /**
      * constructor that creates a ray for every pixel and return the color of every pixel
-     */
+      */
 	 public void renderImage() {
 	        //we check that all fields are not null
 	        try {
