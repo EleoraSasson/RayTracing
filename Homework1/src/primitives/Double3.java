@@ -33,9 +33,17 @@ public class Double3 {
 		this.d3 = d3;
 	}
 
-	/*
-	 * Boolean function to check whether 2 objects are equal 
+	/**
+	 * Constructor to initialize Double3 based object the same number values
+	 * 
+	 * @param value number value for all 3 numbers
 	 */
+	public Double3(double value) {
+		this.d1 = value;
+		this.d2 = value;
+		this.d3 = value;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -46,27 +54,6 @@ public class Double3 {
 			return false;
 		Double3 other = (Double3) obj;
 		return isZero(d1 - other.d1) && isZero(d2 - other.d2) && isZero(d3 - other.d3);
-	}
-	
-	/*
-	 * getter for the first parameter d1 of Double3
-	 */
-	public double getX() {
-		return d1;
-	}
-
-	/*
-	 * getter for the second parameter d2 of Double3
-	 */
-	public double getY() {
-		return d2;
-	}
-
-	/*
-	 * getter for the third parameter d3 of Double3
-	 */
-	public double getZ() {
-		return d3;
 	}
 
 	@Override
@@ -132,6 +119,16 @@ public class Double3 {
 	 */
 	public Double3 product(Double3 rhs) {
 		return new Double3(d1 * rhs.d1, d2 * rhs.d2, d3 * rhs.d3);
+	}
+	
+	/**
+	 * Checks whether all the numbers are lower than a test number
+	 * @param k the test number
+	 * @return true if all the numbers are less than k, false otherwise
+	 */
+
+	public boolean lowerThan(double k) {
+		return d1 < k && d2 < k && d3 < k;
 	}
 
 }

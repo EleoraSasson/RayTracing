@@ -3,7 +3,7 @@ import java.util.List;
 import static primitives.Util.alignZero;
 import primitives.*;
 
-public class Sphere implements Geometry{
+public class Sphere extends Geometry{
 	private Point center;
 	private double radius;
 
@@ -22,9 +22,10 @@ public class Sphere implements Geometry{
 	        return N;
 	    }
 	 
-	 @Override
-	 public List<Point> findIntersections(Ray ray){
-		 Point p0=ray.getP0();
+	 
+	  @Override
+	    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray , double maxDistance ) {///
+	        Point p0=ray.getP0();
 	        Vector v=ray.getDir();
 
 	        if(p0.equals(center)){
@@ -33,35 +34,40 @@ public class Sphere implements Geometry{
 
 	        Vector u=center.subtract(p0);
 
-	        double tm=u.dotProduct(v);
-	        double d=alignZero(Math.sqrt(u.lengthSquared()-tm*tm));
+	        double tm=alignZero(v.dotProduct(u));
+	        double d=alignZero(Math.sqrt(u.lengthSquared()-(tm*tm)));
 
 	        if(d>=radius){
-	           return null;
+	            return null;
 	        }
 
-	        double th=Math.sqrt(radius*radius-d*d);
-	        double t1=tm-th;
-	        double t2=tm+th;
+	        double th=alignZero(Math.sqrt(radius*radius-d*d));
+	        double t1=alignZero(tm-th);
+	        double t2=alignZero(tm+th);
 
-	        if(t1>0 && t2>0){
+	        boolean validT1=alignZero(t1-maxDistance)<=0;
+	        boolean validT2=alignZero(t2-maxDistance)<=0;
+
+	        if(t1>0 && t2>0&& validT1&&validT2){
 	            Point p1=ray.getPoint(t1);
 	            Point p2= ray.getPoint(t2);
 
-	            return List.of(p1,p2);
+	            return List.of(new GeoPoint(this,p1), new GeoPoint(this,p2));
 	        }
-	        if(t1>0){
+	        if(t1>0 &&validT1){
 	            Point p1= ray.getPoint(t1);
 
-	            return List.of(p1);
+	            return List.of(new GeoPoint(this,p1));
 	        }
 
-	        if(t2>0){
+	        if(t2>0&& validT2){
 	            Point p2= ray.getPoint(t2);
 
-	            return List.of(p2);
+	            return List.of(new GeoPoint(this,p2));
 	        }
-	        return null;	 }
+	        return null;
+	    }
+
 
 	
 

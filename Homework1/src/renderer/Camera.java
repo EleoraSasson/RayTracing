@@ -20,18 +20,17 @@ public class Camera {
 	double width;
 	double height;
 	double distance;
-	ImageWriter _imageWriter = null;
-	Camera _camera = null;
-    RayTraceBase _rayTracerBase=null;
+	ImageWriter _imageWriter;
+    RayTraceBase _rayTracerBase;
 
 	  public Camera setImageWriter(ImageWriter imageWriter) {
 	        _imageWriter = imageWriter;
 	        return this;
 	    }
-	  public Camera setCamera(Camera camera) {
+	  /*public Camera setCamera(Camera camera) {
 	        _camera = camera;
 	        return this;
-	    }
+	    }*/
 
 	    public Camera setRayTracer(RayTraceBase rayTracer) {
 	        _rayTracerBase = rayTracer;
@@ -104,14 +103,12 @@ public class Camera {
 	 /**
      * constructor that creates a ray for every pixel and return the color of every pixel
       */
-	 public void renderImage() {
+	 public Camera renderImage() {
 	        //we check that all fields are not null
 	        try {
+	        	
 	            if (_imageWriter == null) {
 	                throw new MissingResourceException("missing ressource", ImageWriter.class.getName(), "");
-	            }
-	            if (_camera == null) {
-	                throw new MissingResourceException("missing ressource", Camera.class.getName(), "");
 	            }
 	            if (_rayTracerBase == null) {
 	                throw new MissingResourceException("missing ressource", RayTraceBase.class.getName(), "");
@@ -122,7 +119,7 @@ public class Camera {
 	            int nY= _imageWriter.getNy();
 	            for(int i=0;i<nY;i++) {
 	                for (int j = 0; j < nX; j++) {
-	                    Ray ray = _camera.constructRayThroughPixel(nX, nY, j, i);
+	                    Ray ray = constructRayThroughPixel(nX, nY, j, i);
 	                    Color pixelColor=_rayTracerBase.traceRay(ray);
 	                    _imageWriter.writePixel(j,i,pixelColor);
 	                }
@@ -131,6 +128,7 @@ public class Camera {
 	        }catch(MissingResourceException e){
 	            throw new UnsupportedOperationException("Not implemented yet "+e.getClassName());
 	        }
+	        return this;
 	    }
     
         
@@ -203,5 +201,3 @@ public class Camera {
 
         }
     }
-
-	

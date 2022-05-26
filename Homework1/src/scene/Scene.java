@@ -1,7 +1,8 @@
 package scene;
 
-import elements.AmbientLight;
 import geometries.Geometries;
+import lighting.AmbientLight;
+import lighting.LightSource;
 import primitives.Color;
 import primitives.Double3;
 
@@ -13,7 +14,7 @@ public class Scene {
     public Color background=Color.BLACK;
     public AmbientLight ambientLight=new AmbientLight(new Color(192, 192, 192), new Double3(1,1,1));
     public Geometries geometries= new Geometries();
-	
+	public List<LightSource> lights = new LinkedList<LightSource>();
 
 
     /**
@@ -41,4 +42,13 @@ public class Scene {
         this.geometries = geometries;
         return this;
     }
+    
+    
+    public Scene setLights(List<LightSource> lights) {
+    	this.lights = lights;
+    	return this;
+    }
+    
+
+    
 }

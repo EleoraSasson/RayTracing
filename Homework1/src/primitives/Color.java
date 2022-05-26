@@ -86,10 +86,12 @@ public class Color {
 		double rr = rgb.d1;
 		double rg = rgb.d2;
 		double rb = rgb.d3;
+		if (colors != null) {
 		for (Color c : colors) {
 			rr += c.rgb.d1;
 			rg += c.rgb.d2;
 			rb += c.rgb.d3;
+		}
 		}
 		return new Color(rr, rg, rb);
 	}

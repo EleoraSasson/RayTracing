@@ -90,4 +90,13 @@ public class ImageWriter {
 		image.setRGB(xIndex, yIndex, color.getColor().getRGB());
 	}
 
+	public void printGrid(int interval, Color color) {
+        for (int i = 0; i < nY; i ++) {
+            for (int j = 0; j < nX; j ++) {
+                if(i % interval == 0 || j % interval== 0) {
+                    writePixel(j, i, color);
+                }
+            }
+        }
+    }
 }

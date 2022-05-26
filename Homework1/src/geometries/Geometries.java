@@ -1,13 +1,15 @@
 package geometries;
 import java.util.List;
 
+import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
 
 import java.util.LinkedList;
 import java.util.Arrays;
+import java.util.Collections;
 
-public class Geometries implements Intersectable{
+public class Geometries extends Intersectable{
 	private List<Intersectable> intersectables;
 	
 	public Geometries() {
@@ -15,16 +17,32 @@ public class Geometries implements Intersectable{
 	}
 	
 	public Geometries(Intersectable...geometries) {
-		intersectables = new LinkedList<>();
+		this();
 		add(geometries);
 	}
 	
 	public void add(Intersectable...geometries) {
-		intersectables.addAll(Arrays.asList(geometries));
+		Collections.addAll(intersectables, geometries);
+
 	}
 	
-	@Override
-	 public List<Point> findIntersections(Ray ray){
-		 return null;
-	 }
+	
+	 @Override
+	    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) { ///
+	        List<GeoPoint> result= null;
+
+	        //we pass on all geometries intersectables we check if there is points of intersection. If there is any, we add intersection point in a list
+	        for (Intersectable item : intersectables) {
+	            List<GeoPoint> itemPoints = item.findGeoIntersectionsHelper(ray,maxDistance);///
+	            if(itemPoints!=null){
+	                if(result==null){
+	                    result=new LinkedList<>();
+	                }
+	                result.addAll(itemPoints);
+	            }
+	        }
+
+	        return result;
+	    }
+
 }

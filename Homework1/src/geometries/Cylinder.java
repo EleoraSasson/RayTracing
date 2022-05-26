@@ -15,8 +15,8 @@ public class Cylinder extends Tube {
     //return the normal of the cylinder at point p0
     public Vector getNormal(Point p0)
     {
-       Point o=_axisRay.getP0();
-       Vector v=_axisRay.getDir();
+       Point o=axisRay.getP0();
+       Vector v=axisRay.getDir();
 
        //projection of P0 on the ray:
         double t;

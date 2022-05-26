@@ -78,15 +78,15 @@ public class Point {
 	}
 	
 	public double getX() {
-		return xyz.getX();
+		return xyz.d1;
 	}
 
 	public double getY() {
-		return xyz.getY();
+		return xyz.d2;
 	}
 
 	public double getZ() {
-		return xyz.getZ();
+		return xyz.d3;
 	}
 
 	@Override

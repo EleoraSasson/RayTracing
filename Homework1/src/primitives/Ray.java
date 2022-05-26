@@ -2,10 +2,13 @@ package primitives;
 
 import java.util.List;
 import java.util.Objects;
+import geometries.Intersectable.GeoPoint;
+import geometries.Intersectable.GeoPoint;
 
 public class Ray {
 	private Point p0;
 	private Vector dir;
+	 public static final double  DELTA=0.1;
 	
 	/**
 	 *Constructor that returns a "null ray"
@@ -31,6 +34,13 @@ public class Ray {
 		this.dir = dir.normalize();
 	}
 
+	public Ray (Point point, Vector n, Vector direction)
+	{
+	    Vector delta=n.scale(n.dotProduct(direction)>0? DELTA: -DELTA);
+	    p0=point.add(delta);
+	    dir=direction;
+	}
+	
 	/**
 	 *Getter for P0 
 	 * 
@@ -84,21 +94,27 @@ public class Ray {
      * @return closest point
      */
 
-    public Point findClosestPoint(List<Point> pointsList){
-    	Point result=null;
+
+	public Point findClosestPoint(List<Point> points) {
+	    return points == null || points.isEmpty() ? null
+	           : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+	}
+    
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPointList)
+    {
+        GeoPoint result=null;
         double closestDistance=Double.MAX_VALUE;
 
-        if(pointsList==null){
+        if(geoPointList==null){
             return null;
         }
-        for(Point p:pointsList){
-            double temp=p.distance(p0);// temp is the distance between a point in the list and the _p0 of the ray
+        for(GeoPoint geo:geoPointList){
+            double temp=geo.point.distance(p0);
             if(temp<closestDistance){
-                closestDistance=temp;// closestDistance is the minimum temp
-                result=p;
+                closestDistance=temp;
+                result=geo;
             }
         }
-        return result; //result is the closest point to the ray
-
+        return result; 
     }
 }

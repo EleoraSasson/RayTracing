@@ -1,9 +1,10 @@
 package geometries;
 import java.util.List;
 import static primitives.Util.isZero;
+import static primitives.Util.alignZero;
 import primitives.*;
 
-public class Plane implements Geometry{
+public class Plane extends Geometry{
 	private Point q0;
 	private Vector normal;
 
@@ -44,23 +45,27 @@ public class Plane implements Geometry{
 	 }
 	 
 	 
+	 
 	 @Override
-	 public List<Point> findIntersections(Ray ray){
-		 Point p0=ray.getP0();
-	        Vector v=ray.getDir();
-	        double t=(normal.dotProduct(q0.subtract(p0)))/(normal.dotProduct(v));
-	        if((p0.equals(q0)) && !(isZero(normal.dotProduct(v)))){
-	            Point p= q0;
-
-	            return List.of(p);
+	 public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
+	        Point p0 = ray.getP0();
+	        Vector v = ray.getDir();
+	        if (isZero(normal.dotProduct(v))) {
+	            return null;
 	        }
+	        if ((p0.equals(q0)) && !(isZero(normal.dotProduct(v)))) {
+	            return null;
+	        }
+	        double t = (normal.dotProduct(q0.subtract(p0))) / (normal.dotProduct(v));
 
-	        if(t>0){
-	            Point p= ray.getPoint(t);
 
-	            return List.of(p);
+	        if (t > 0&&(alignZero(t-maxDistance)<=0))
+	        {
+	            Point p = ray.getPoint(t);
+
+	            return List.of(new GeoPoint(this, p));
 	        }
 	        return null;
-	 }
+	    }
 
 }
