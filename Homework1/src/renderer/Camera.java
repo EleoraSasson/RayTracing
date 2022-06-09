@@ -21,7 +21,7 @@ public class Camera {
 	double height;
 	double distance;
 	ImageWriter _imageWriter;
-    RayTraceBase _rayTracerBase;
+    RayTracerBase _rayTracerBase;
 
 	  public Camera setImageWriter(ImageWriter imageWriter) {
 	        _imageWriter = imageWriter;
@@ -32,7 +32,7 @@ public class Camera {
 	        return this;
 	    }*/
 
-	    public Camera setRayTracer(RayTraceBase rayTracer) {
+	    public Camera setRayTracer(RayTracerBase rayTracer) {
 	        _rayTracerBase = rayTracer;
 
 	        return this;
@@ -111,7 +111,7 @@ public class Camera {
 	                throw new MissingResourceException("missing ressource", ImageWriter.class.getName(), "");
 	            }
 	            if (_rayTracerBase == null) {
-	                throw new MissingResourceException("missing ressource", RayTraceBase.class.getName(), "");
+	                throw new MissingResourceException("missing ressource", RayTracerBase.class.getName(), "");
 	            }
 
 	            //rendering the image

@@ -1,54 +1,63 @@
 package scene;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import geometries.Geometries;
 import lighting.AmbientLight;
 import lighting.LightSource;
 import primitives.Color;
-import primitives.Double3;
 
-import java.util.LinkedList;
-import java.util.List;
+/**
+ * Class to represent a scene   de
+ *
+ */
+public class Scene {  
 
-public class Scene {
-    public String _name;
-    public Color background=Color.BLACK;
-    public AmbientLight ambientLight=new AmbientLight(new Color(192, 192, 192), new Double3(1,1,1));
-    public Geometries geometries= new Geometries();
-	public List<LightSource> lights = new LinkedList<LightSource>();
-
+    public static String name1;
+    public Color background = Color.BLACK;
+    public AmbientLight ambientLight;
+    public Geometries geometries;
+    public List<LightSource> lights = new LinkedList<>();
 
     /**
-     * constructor that creates a scene
-     * @param name
+     * Constructor
      */
     public Scene(String name) {
-        _name = name;
+        this.name1 = name;
+        ambientLight = new AmbientLight();
         geometries = new Geometries();
     }
 
-    //setters
-
-    public Scene setBackground(Color background) {
-        this.background = background;
+    /**
+     * setter for lights list
+     */
+    public Scene setLights(List<LightSource> l) {
+        lights = l;
         return this;
     }
 
+    /**
+     * Set the background color
+     */
+    public Scene setBackground(Color color) {
+        background = color;
+        return this;
+    }
+
+    /**
+     * Set the ambient light
+     */
     public Scene setAmbientLight(AmbientLight ambientLight) {
-       // this.ambientLight = ambientLight;
+        this.ambientLight = ambientLight;
         return this;
     }
 
+    /**
+     * Set the geometries
+     */
     public Scene setGeometries(Geometries geometries) {
         this.geometries = geometries;
         return this;
     }
-    
-    
-    public Scene setLights(List<LightSource> lights) {
-    	this.lights = lights;
-    	return this;
-    }
-    
-
-    
 }
