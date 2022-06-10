@@ -26,23 +26,29 @@ public class Geometries extends Intersectable{
 
 	}
 	
-	
-	 @Override
-	    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) { ///
-	        List<GeoPoint> result= null;
 
-	        //we pass on all geometries intersectables we check if there is points of intersection. If there is any, we add intersection point in a list
-	        for (Intersectable item : intersectables) {
-	            List<GeoPoint> itemPoints = item.findGeoIntersectionsHelper(ray,maxDistance);///
-	            if(itemPoints!=null){
-	                if(result==null){
-	                    result=new LinkedList<>();
-	                }
-	                result.addAll(itemPoints);
-	            }
-	        }
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray, double distance) {
+		List<GeoPoint> result= null;
 
-	        return result;
-	    }
+        //we pass on all geometries intersectables we check if there is points of intersection. If there is any, we add intersection point in a list
+        for (Intersectable item : intersectables) {
+            List<GeoPoint> itemPoints = item.findGeoIntersectionsHelper(ray,distance);///
+            if(itemPoints!=null){
+                if(result==null){
+                    result=new LinkedList<>();
+                }
+                result.addAll(itemPoints);
+            }
+        }
+
+        return result;
+	}
+
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

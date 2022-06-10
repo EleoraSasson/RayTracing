@@ -5,16 +5,16 @@ import primitives.Ray;
 import scene.Scene;
 
 public abstract class RayTracerBase {
-    protected Scene _scene ;
+    protected Scene scene ;
 
     /**
      * constructor
-     * @param scene
+     * @param s
      */
-    public RayTracerBase(Scene scene) {
-        if(scene==null)
+    public RayTracerBase(Scene s) {
+        if(s==null)
             throw new IllegalArgumentException("Error");
-        this._scene = scene;
+        this.scene = s;
     }
     public abstract Color traceRay (Ray ray);
 }

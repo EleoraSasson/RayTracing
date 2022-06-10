@@ -136,4 +136,9 @@ public class Polygon extends Geometry {
 	        //return result;
 	    }
 
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray, double distance) {
+		return findGeoIntersectionsHelper(ray, distance);
+	}
+
 }

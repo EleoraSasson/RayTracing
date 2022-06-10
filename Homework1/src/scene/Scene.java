@@ -8,13 +8,9 @@ import lighting.AmbientLight;
 import lighting.LightSource;
 import primitives.Color;
 
-/**
- * Class to represent a scene   de
- *
- */
 public class Scene {  
 
-    public static String name1;
+    public static String name;
     public Color background = Color.BLACK;
     public AmbientLight ambientLight;
     public Geometries geometries;
@@ -23,17 +19,17 @@ public class Scene {
     /**
      * Constructor
      */
-    public Scene(String name) {
-        this.name1 = name;
+    public Scene(String n) {
+        this.name = n;
         ambientLight = new AmbientLight();
         geometries = new Geometries();
     }
 
     /**
-     * setter for lights list
+     * setter for list of lights
      */
-    public Scene setLights(List<LightSource> l) {
-        lights = l;
+    public Scene setLights(List<LightSource> ls) {
+        lights = ls;
         return this;
     }
 

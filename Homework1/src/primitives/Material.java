@@ -6,9 +6,10 @@ package primitives;
  */
 
 public class Material {
-	public double Kd = 0;
-	public double Ks = 0;
-	public double Kt=0.0;
+	public Double3 Kd = new Double3(0,0,0);
+	public Double3 Ks = new Double3(0,0,0);
+	public Double3 Kt= new Double3(0,0,0);
+    public Double3 Kr = new Double3(0,0,0);
 	public int nShininess = 0;
 
 	/**
@@ -18,7 +19,7 @@ public class Material {
 	 * @return Material object
 	 */
 	public Material setKd(double kd) {
-		Kd = kd;
+		Kd = new Double3(kd);
 		return this;
 	}
 
@@ -30,9 +31,19 @@ public class Material {
 	 */
 
 	public Material setKs(double ks) {
-		Ks = ks;
+		Ks = new Double3(ks);
 		return this;
 	}
+	
+	/**
+     * we set the kr coefficient and return the object material
+     * @param kr
+     * @return Material that we are working on
+     */
+        public Material setKr(double kr) {
+        Kr = new Double3(kr);
+        return this;
+    }
 
 	/**
 	 * setter

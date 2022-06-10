@@ -68,4 +68,9 @@ public class Plane extends Geometry{
 	        return null;
 	    }
 
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray, double distance) {
+		return findGeoIntersectionsHelper(ray, distance);
+	}
+
 }
