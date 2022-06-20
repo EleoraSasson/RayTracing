@@ -24,7 +24,6 @@ public class DirectionalLight extends Light implements LightSource {
 
 		@Override
 		public double getDistance(Point p) {
-			// TODO Auto-generated method stub
-			return 0;
+			return Double.POSITIVE_INFINITY;
 		}
 }

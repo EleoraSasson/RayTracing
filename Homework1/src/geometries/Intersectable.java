@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Objects;
 
 public abstract class Intersectable {
-	 //public abstract List<Point> findIntersections(Ray ray);
 	 
 	 public final List<Point> findIntersections(Ray ray) {
 		 List<GeoPoint> geoList = findGeoIntersections(ray);
