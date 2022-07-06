@@ -26,7 +26,9 @@ public class Geometries extends Intersectable{
 
 	}
 	
-
+/*
+ * 
+ * JV - I TOOK IT OUT HERE AND PUT IT INTO INTERSECTABLE 
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray, double distance) {
 		List<GeoPoint> result= null;
@@ -44,11 +46,43 @@ public class Geometries extends Intersectable{
 
         return result;
 	}
-
+*/
+	
+	/*
+	 * JV CHANGING FROM NULL TO REAL method
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	*/
+	 @Override
+	    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double distance) {
+	        List<GeoPoint> intersections = null;
+	        for (var geometry : intersectables) {
+	            var tempIntersections = geometry.findGeoIntersections(ray, distance);
+	            if (tempIntersections != null) {
+	                if (intersections == null)
+	                    intersections = new LinkedList<>();
+	                intersections.addAll(tempIntersections);
+	            }
+	        }
+	        return intersections;
+	    }
+// JV ADDED TO CODE	
+	 @Override
+	    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+	        List<GeoPoint> intersections = null;
+	        for (var geometry : intersectables) {
+	            var tempIntersections = geometry.findGeoIntersections(ray);
+	            if (tempIntersections != null) {
+	                if (intersections == null)
+	                    intersections = new LinkedList<>();
+	                intersections.addAll(tempIntersections);
+	            }
+	        }
+	        return intersections;
+	    }
 
 }

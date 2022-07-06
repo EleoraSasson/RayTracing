@@ -1,5 +1,8 @@
 package geometries;
 import java.util.List;
+
+import geometries.Intersectable.GeoPoint;
+
 import static primitives.Util.alignZero;
 import primitives.*;
 
@@ -68,10 +71,11 @@ public class Sphere extends Geometry{
 	        return null;
 	    }
 
-	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray, double distance) {
-		return findGeoIntersectionsHelper(ray, distance);
-	}
+	  @Override
+		protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 
 	

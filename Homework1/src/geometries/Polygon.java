@@ -135,10 +135,16 @@ public class Polygon extends Geometry {
 	        return List.of(new GeoPoint(this,planeGo));
 	        //return result;
 	    }
+//
+//	@Override
+//	public List<GeoPoint> findGeoIntersections(Ray ray, double distance) {
+//		return findGeoIntersectionsHelper(ray, distance);
+//	}
 
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray, double distance) {
-		return findGeoIntersectionsHelper(ray, distance);
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

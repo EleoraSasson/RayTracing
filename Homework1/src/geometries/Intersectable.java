@@ -9,14 +9,20 @@ import java.util.Objects;
 
 public abstract class Intersectable {
 	 
-	 public final List<Point> findIntersections(Ray ray) {
+	 public  List<Point> findIntersections(Ray ray) {
 		 List<GeoPoint> geoList = findGeoIntersections(ray);
 		 return geoList == null ? null
 		 : geoList.stream().map(gp -> gp.point). toList();
 		 }
 	 
-	public abstract List<GeoPoint> findGeoIntersections(Ray ray, double distance);
-	public List<GeoPoint> findGeoIntersections(Ray ray)
+	//public abstract List<GeoPoint> findGeoIntersections(Ray ray, double distance);
+	
+	 // JV - ADDED INTO THEIR CODE
+	 public final List<GeoPoint> findGeoIntersections(Ray ray, double distance) {
+			return findGeoIntersectionsHelper(ray, distance);
+		}
+	 
+	 public List<GeoPoint> findGeoIntersections(Ray ray)
 	{
 	        return findGeoIntersections(ray, Double.POSITIVE_INFINITY);
 	}
@@ -52,8 +58,9 @@ public abstract class Intersectable {
 			return geometry.getNormal(point);
 		}
 	}
-
+// JV????
 	protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance);
+protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 
 
 

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import static java.awt.Color.*;
 
-import renderer.ImageWriter;
 import lighting.*;
 import geometries.*;
 import primitives.*;
@@ -105,6 +104,75 @@ public class ReflectionRefractionTests {
 
 		ImageWriter imageWriter = new ImageWriter("refractionShadow", 600, 600);
 		camera.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene)) //
+				.renderImage() //
+				.writeToImage();
+	}
+	
+	
+	
+	@Test
+	public void ourImage() {
+		Camera camera = new Camera(new Point(0, -30, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+				.setVPSize(300,300).setVPDistance(1200);
+		
+		
+		scene.setBackground(new Color(BLACK));
+		scene.setAmbientLight(new AmbientLight(new Color(25,42,88), 0.25));
+
+
+		scene.geometries.add( //
+				new Plane(new Point(0,-60,-100), new Vector(0,-1,0))
+				.setEmission(new Color(20,20,20)).setMaterial(new Material(0.2, 0.2, 0.3, 0.2, 60)),
+				new Triangle(new Point(-30,20,-10), new Point(20,20,-10), new Point(-5, 70, -10))
+				.setEmission(new Color(22,200,7)).setMaterial(new Material(0.6,0.3,0,0,200)),
+				new Polygon(new Point(0,-10,-5), new Point(0,40,-5), new Point(50,40,-5), new Point(50,-10,-5))
+				.setEmission(new Color(255,0,10)).setMaterial(new Material(0.8,0.5,0,0.5,100)),
+				new Sphere(new Point(30,-30,-30),25).setEmission(new Color(50,20,150))
+				.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100)),
+				new Polygon(new Point(-70,-55,-30), new Point(-30,-55,-30), new Point(-30,-25,-30), new Point(-50,0,-30), new Point(-70,-25,-30))
+				.setEmission(new Color(10,0,255)).setMaterial(new Material(0.6, 0.3,0,0,150))
+				);
+		scene.lights.add( //
+				new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2)) //
+						.setKl(0.0004).setKq(0.0000006)
+						);
+		scene.lights.add(new PointLight(new Color(1300, 500, 0),new Point(0,0,0)).setKl(0.001).setKq(0.0002));
+
+		camera.setImageWriter(new ImageWriter("ourImage", 500, 500)) //
+				.setRayTracer(new RayTracerBasic(scene)) //
+				.renderImage() //
+				.writeToImage();
+	}
+	
+	@Test
+	public void cameraRotation() {
+		Camera camera = new Camera(new Point(-320, 280, 300), new Vector(2, -2, -2), new Vector(1, 2, -1)) //
+				.setVPSize(300,300).setVPDistance(650);		
+		
+		scene.setBackground(new Color(BLACK));
+		scene.setAmbientLight(new AmbientLight(new Color(25,42,88), 0.25));
+
+
+		scene.geometries.add( //
+				new Plane(new Point(0,-60,-100), new Vector(0,-1,0))
+				.setEmission(new Color(20,20,20)).setMaterial(new Material(0.2, 0.2, 0.3, 0.2, 60)),
+				new Triangle(new Point(-30,20,-10), new Point(20,20,-10), new Point(-5, 70, -10))
+				.setEmission(new Color(22,200,7)).setMaterial(new Material(0.6,0.3,0,0,200)),
+				new Polygon(new Point(0,-10,-5), new Point(0,40,-5), new Point(50,40,-5), new Point(50,-10,-5))
+				.setEmission(new Color(255,0,10)).setMaterial(new Material(0.8,0.5,0,0.5,100)),
+				new Sphere(new Point(30,-30,-30),25).setEmission(new Color(50,20,150))
+				.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100)),
+				new Polygon(new Point(-70,-55,-30), new Point(-30,-55,-30), new Point(-30,-25,-30), new Point(-50,0,-30), new Point(-70,-25,-30))
+				.setEmission(new Color(10,0,255)).setMaterial(new Material(0.6, 0.3,0,0,150))
+				);
+		scene.lights.add( //
+				new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2)) //
+						.setKl(0.0004).setKq(0.0000006)
+						);
+		scene.lights.add(new PointLight(new Color(1300, 500, 0),new Point(0,0,0)).setKl(0.001).setKq(0.0002));
+
+		camera.setImageWriter(new ImageWriter("ourImageRotated", 500, 500)) //
 				.setRayTracer(new RayTracerBasic(scene)) //
 				.renderImage() //
 				.writeToImage();

@@ -141,12 +141,13 @@ public class Vector {
 
     //return new vector normal from the vector on which the operation is performed
     public Vector normalized(){
-        return new Vector(new Double3(
-                _head.d1 /this.length(),
-                _head.d2 /this.length(),
-                _head.d3 /this.length()
-
-        ));
+//        return new Vector(new Double3(
+//                _head.d1 /this.length(),
+//                _head.d2 /this.length(),
+//                _head.d3 /this.length()
+//
+//        ));
+    	return new Vector(this._head).normalize();
     }
 
 

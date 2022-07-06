@@ -20,6 +20,20 @@ public class RayTracerBasic extends RayTracerBase {
 	 * Minimum k coefficient for reflection and refraction in calcColor
 	 */
 	private static final double MIN_CALC_COLOR_K = 0.001;
+	
+	public int getSampleCount() {
+        return SampleCount;
+    }
+
+    /**
+     * setter for the number of rays for glossy and diffuse improvement
+     * @param sampleCount
+     */
+    public void setSampleCount(int sampleCount) {
+        SampleCount = sampleCount;
+    }
+
+    int SampleCount;
 
 	/**
 	 * RayTracerBasic constructor
@@ -271,5 +285,9 @@ public class RayTracerBasic extends RayTracerBase {
 			return null;
 		return ray.findClosestGeoPoint(lst);
 	}
+	
+	
+	
+	
 }
 

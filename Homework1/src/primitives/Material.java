@@ -70,9 +70,6 @@ package primitives;
 
 /**
  * Class Material is the basic class representing a geometry's material
- * 
- * @author Jonah Lawrence
- * @author Elad Harizy
  */
 public class Material {
 

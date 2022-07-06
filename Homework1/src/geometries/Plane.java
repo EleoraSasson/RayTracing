@@ -68,9 +68,27 @@ public class Plane extends Geometry{
 	        return null;
 	    }
 
+	 @Override
+	  public List<GeoPoint> findGeoIntersections(Ray ray) {
+	    try {
+	      // direction from ray's origin to a point on the plane
+	      Vector u = q0.subtract(ray.getP0());
+	      // distance from ray's origin to the point
+	      double t = normal.dotProduct(u) / normal.dotProduct(ray.getDir());
+	      // return the point if it is reached by the ray
+	      if (t > 0 && !Double.isInfinite(t)) {
+	        return List.of(new GeoPoint(this, ray.getPoint(t)));
+	      }
+	    } catch (IllegalArgumentException e) {
+	      // ray has origin on the plane
+	    }
+	    return null;
+	  }
+
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray, double distance) {
-		return findGeoIntersectionsHelper(ray, distance);
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
