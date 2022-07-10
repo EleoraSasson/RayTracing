@@ -290,4 +290,3 @@ public class RayTracerBasic extends RayTracerBase {
 	
 	
 }
-

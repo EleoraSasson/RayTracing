@@ -3,7 +3,7 @@ package primitives;
 import static primitives.Double3.ZERO;
 
 public class Vector {
-    Double3 _head;
+    public Double3 _head;
 
     /**
      * constructor checks if the receive point is the point (0,0,0) if so it throws exception
@@ -154,7 +154,19 @@ public class Vector {
     public Double3 getHead() {
         return _head;
     }
-
+    
+    public double getX() {
+    	return _head.d1;
+    }
+    
+    public double getY() {
+    	return _head.d2;
+    }
+    
+    public double getZ() {
+    	return _head.d3;
+    }
+    
     /**
      * @param o
      * @return true if the vector received and the vector on which the operation is performed are equal

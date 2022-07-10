@@ -7,7 +7,9 @@ import lighting.*;
 import geometries.*;
 import primitives.*;
 import renderer.*;
+import renderer.Camera.SUPERSAMPLING_TYPE;
 import scene.Scene;
+
 
 import static java.awt.Color.BLACK;
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,6 +53,7 @@ class miniProject1Test {
 	        
 		camera.setImageWriter(new ImageWriter("beforeSuperSampling", 500, 500)) //
 				.setRayTracer(new RayTracerBasic(scene)) //
+				.setSupersamplingType(SUPERSAMPLING_TYPE.NONE) //
 				.renderImage() //
 				.writeToImage();
 
@@ -83,15 +86,15 @@ class miniProject1Test {
 
 		
 	        scene.lights.add(new DirectionalLight(new Color(75, 0, 130), new Vector(0, 0, -1)));
-	        	        
+	        
+	        RayTracerBasic rayTracer = new RayTracerBasic(scene);
+	        rayTracer.setSampleCount(3);
 	        
 		camera.setImageWriter(new ImageWriter("withSuperSampling", 500, 500)) //
-				.setRayTracer(new RayTracerBasic(scene).setSampleCount) //
-				.setMultithreading(3).setDebugPrint();
-		        .setLevel_adaptive_supersampling(10);
+				.setRayTracer(rayTracer) //
+				.setSupersamplingType(SUPERSAMPLING_TYPE.SUPERSAMPLING) //
 				.renderImage() //
 				.writeToImage();
-
 	}
 
 }
